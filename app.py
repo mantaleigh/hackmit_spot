@@ -6,22 +6,19 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
-import os
+spot_available = False
+
+import os, random
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configured')
-
-
-###
-# Routing for your application.
-###
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'a_very_secret_secret')
 
 @app.route('/')
 def home():
     """Render website's home page."""
-    return render_template('home.html')
+    return render_template('home.html', availability=spot_available)
 
 
 @app.route('/about/')
@@ -29,17 +26,18 @@ def about():
     """Render the website's about page."""
     return render_template('about.html')
 
-@app.route('/space_data', methods=['GET', 'POST'])
-def space_data():
-    if request.method == 'POST':
-        response = jsonify(request.form)
-        # request.form['hello']
+@app.route('/availability_data', methods=['GET', 'POST'])
+def availability_data():
+    global spot_available # gross, but whatever it's a hackathon #fuckitshipit
+    if request.method == 'POST' and 'availability' in request.form.keys():
+        spot_available = bool(int(request.form['availability']))
+        response = jsonify(request.form) # echo the received info back
         return response
 
-
-
-
-
+@app.route('/get_availability')
+def get_availability():
+    global spot_available
+    return jsonify(spot_available)
 
 
 
