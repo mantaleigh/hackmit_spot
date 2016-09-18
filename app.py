@@ -7,7 +7,7 @@ This file creates your application.
 """
 
 import os
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 
 app = Flask(__name__)
 
@@ -28,6 +28,19 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html')
+
+@app.route('/space_data', methods=['GET', 'POST'])
+def space_data():
+    if request.method == 'POST':
+        response = jsonify(request.form)
+        # request.form['hello']
+        return response
+
+
+
+
+
+
 
 
 ###
