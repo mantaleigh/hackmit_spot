@@ -2,14 +2,19 @@ body {
   margin:0; 
   padding:0;
   background-color: #eceef2; 
+  font-family: 'acumen-pro', sans-serif;
 }
 
-#map { 
+#map, #map--search { 
   position: absolute;
   z-index: 1;
   top: 85px; 
   width:100%;
   height: 40%; 
+}
+
+#map--search { 
+  height: 100%;
 }
 
 /*********** header **********/
@@ -37,8 +42,16 @@ header {
   border-top: 1px solid lightGray;
 }
 
-.secondary-header .map-text { 
+.secondary-header .map-text, .secondary-header .search-text { 
   padding-left: 10px;
+}
+
+.secondary-header .search-text { 
+  width: 90%;
+}
+
+.secondary-header .map-text a:link, .secondary-header .map-text a:visited, .secondary-header .map-text a:active { 
+  color: gray;
 }
 
 /*****************************/
@@ -108,7 +121,7 @@ footer {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  bottom: 10px;
+  bottom: 25px;
   left: 0;
   right: 0;
 

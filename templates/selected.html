@@ -19,10 +19,8 @@
         $SCRIPT_ROOT + '/get_availability',
         function(data)
         {
-            if (data) {
-                $("#avail_status").text("available!");
-            } else { 
-                $("#avail_status").text("not available :(");
+            if (!data) {
+            	window.location.replace($SCRIPT_ROOT + "/parked");
             }
         }
      );
@@ -34,7 +32,7 @@
     var map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
-    center: [-74.50, 40], // starting position
+    center: [42.3631, -71.0699], // starting position
     zoom: 9 // starting zoom
 });
 
@@ -44,7 +42,7 @@
 
 
 {% block main %}
-
+	<div id='map'></div>
     <div id="main-box">
         <div id="main-box-top">
                 <p><i class="fa fa-map-marker address-icon" aria-hidden="true"></i>98 Edicott Street, Cambridge, MA</p>
@@ -71,6 +69,12 @@
             <p>Meter starts automatically on arrival</p>
         </div>
     </div>
+
+
+  <footer>
+    <p>Does spot not recognize your car? <a href="#">Report it here</a></p>
+  </footer>
+
 {% endblock %}
 
     <p>Your spot is <span id="avail_status"></span>

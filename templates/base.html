@@ -21,6 +21,9 @@
   <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
   <link rel="stylesheet/less" href="/static/css/main.less">
 
+  <script src="https://use.typekit.net/cjh4iec.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
   {% block css %}{% endblock %}
 
   <!-- Rather use `less.js` to dynamically compile your `stylesheet/less` files? -->
@@ -29,6 +32,8 @@
 
   <!-- font awesome -->
   <script src="https://use.fontawesome.com/1c5aaa639e.js"></script>
+
+
 
   <!-- Need Modernizr? Uncomment the following script. -->
   <!-- <script src="/static/js/modernizr.js"></script> -->
@@ -42,14 +47,8 @@
   </header>
 
   <div id="main" role="main">
-    <div id='map'></div>
     {% block main %}{% endblock %}
   </div>
-
-  <footer>
-    {% include "footer.html" %}
-  </footer>
-
 
   <!-- JavaScript at the bottom for fast page loading -->
 

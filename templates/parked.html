@@ -16,14 +16,11 @@
     function getData()
     {
      $.getJSON(
-        $SCRIPT_ROOT + '/get_availability',
+        $SCRIPT_ROOT + '/get_parking_updates',
         function(data)
         {
-            if (data) {
-                $("#avail_status").text("available!");
-            } else { 
-                $("#avail_status").text("not available :(");
-            }
+
+            $("#time_remaining").text(data['time_left']);
         }
      );
     }
@@ -44,7 +41,7 @@
 
 
 {% block main %}
-
+	<div id='map'></div>
     <div id="main-box--parked">
         <div id="main-box-top">
                 <p><i class="fa fa-map-marker address-icon" aria-hidden="true"></i>98 Edicott Street, Cambridge, MA</p>
@@ -55,15 +52,15 @@
                 <div><i class="fa fa-2x fa-car" aria-hidden="true"></i></div>
                 <div>
 	                <p><span class="medium-search-detail">METER</span></p>
-	                <p><span class="large-search-detail">$0.39</span></p>
-	                <p><span class="small-search-detail">23 MINUTES @ $2.00/HR</span></p>
+	                <p><span class="large-search-detail">{{ meter_val }}</span></p>
+	                <p><span class="small-search-detail">{{ time_used }} @ $2.00/HR</span></p>
 	            </div>
             </div>
             <div class="row2">
                 <div><i class="fa fa-2x fa-clock-o" aria-hidden="true"></i></div>
                 <div>
 	                <p><span class="medium-search-detail">MAX TIME REMAINING</span></p>
-	                <p><span class="large-search-detail">1 hr 36 Mins</span></p>
+	                <p><span class="large-search-detail" id="time_remaining">{{ time_remaining }}</span></p>
 	                <p><span class="small-search-detail">OF 2 HOUR LIMIT</span></p>
 	            </div>
             </div>
