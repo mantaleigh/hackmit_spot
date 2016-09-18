@@ -1,9 +1,3 @@
-html {
-  height: 100%;
-  margin: auto;
-  /*overflow: scroll;*/
-}
-
 body { 
   margin:0; 
   padding:0;
@@ -49,7 +43,7 @@ header {
 
 /*****************************/
 
-#main-box {
+#main-box, #main-box--parked {
   position: relative;
   z-index: 3;
   text-align: center;
@@ -59,7 +53,7 @@ header {
   margin-left: -40vw;
 
   background-color: #F5F5F5;
-  height: 50vh;
+  height: 47vh;
   width: 80vw;
 
   box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
@@ -67,7 +61,9 @@ header {
 }
 .direction-button {
   background-color: #42C530;
-  padding: 0.75em 2.5em;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  width: 70vw;
   display: inline-block; 
   color: #fff;
   margin-bottom: 1em;
@@ -95,9 +91,9 @@ header {
   padding-right: 5%;
 }
 
-#main-box-middle {
+#main-box-middle, #main-box-middle--parked {
   background-color: #F5F5F5;
-  height: 24vh;
+  height: 20vh;
   margin-top: 15px;
   color: black;
 }
@@ -112,7 +108,7 @@ footer {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  bottom: 20px;
+  bottom: 10px;
   left: 0;
   right: 0;
 
@@ -133,7 +129,7 @@ footer a:visited, footer a:active, footer a:link {
 .main-box-middle--note { 
   clear: both;
   font-size: 10px;
-  color: lightGray;
+  color: gray;
   padding-top: 15px;
 }
 
@@ -153,6 +149,79 @@ footer a:visited, footer a:active, footer a:link {
   font-size: 15px;
 }
 
-.col1 p, .col2 p { 
+.col1 p, .col2 p, .row1 p, .row2 p { 
+  margin: -5px;
+}
+
+#main-box-middle--parked .row1 div:first-child, #main-box-middle--parked .row2 div:first-child { 
+  float: left;
+  clear: both;
+  padding: 17px 20px;
+}
+
+#main-box-middle--parked .row1, #main-box-middle--parked .row2 { 
+  text-align: left;
+}
+
+.row1 { 
+  border-bottom: 1px solid lightGray;
+}
+
+.row2 { 
+  padding-top: 15px;
+}
+
+.row1, .row2 { 
+  height: 75px;
+}
+
+#main-box-middle--parked .row2 div:first-child { 
+  padding-top: 26px;
+}
+
+#main-box-middle--parked .row1 div:nth-child(2), #main-box-middle--parked .row2 div:nth-child(2) { 
+  padding-left: 75px;
+}
+
+#main-box-bottom .main-box-middle--note{
+  font-size: 10px;
+  color: gray;
+}
+
+#main-box-bottom--parked { 
+  border-top: 1px solid lightGray;
+}
+
+
+#main-box-bottom--parked .main-box-middle--note{
+  font-size: 10px;
+  color: gray;
+  padding: 5px 0px 0px 0px;
+}
+
+#main-box-bottom2--parked { 
+  background-color: white;
+  border-top: 1px solid lightGray;
+  padding: 5px 0px;
+}
+
+#main-box-bottom2--parked p { 
   margin: 0px;
+  padding: 0px;
+}
+
+#main-box-bottom2--parked .meter-on-note { 
+  color: #42C530;
+  font-weight: bold;
+}
+
+#main-box-middle--parked { 
+  height: 24vh; 
+}
+
+
+
+/* change the height just for the parked page */
+#main-box--parked { 
+  height: 53vh;
 }

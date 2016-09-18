@@ -1,12 +1,76 @@
 {% extends "base.html" %}
 
+{% block css %}
+	<link rel="stylesheet" href="../static/css/custom.css">
+{% endblock %}
 
 {% block js %}
+    <script type=text/javascript>
+
+    $.ajaxSetup ({
+        cache: false
+    });  
+
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
+    function getData()
+    {
+     $.getJSON(
+        $SCRIPT_ROOT + '/get_availability',
+        function(data)
+        {
+            if (data) {
+                $("#avail_status").text("available!");
+            } else { 
+                $("#avail_status").text("not available :(");
+            }
+        }
+     );
+    }
+
+    setInterval(getData, 1000);
+
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic29raWMiLCJhIjoiY2l0N3doaTZ1MGF1ZjJ6bXdkdzIyb3N4MiJ9.F7fsAP4czc7b23oqBML7JA';
+    var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
+    center: [-74.50, 40], // starting position
+    zoom: 9 // starting zoom
+});
+
+    </script>
+
 {% endblock %}
 
 
 {% block main %}
 
-	<a href="/s">go home</a>
-
+    <div id="main-box">
+        <div id="main-box-top">
+                <p><i class="fa fa-map-marker address-icon" aria-hidden="true"></i>98 Edicott Street, Cambridge, MA</p>
+                <button type="button" class="btn direction-button"><i class="fa fa-map-signs map-nav-icon" aria-hidden="true"></i>Get directions to this spot</button>
+        </div>
+        <div id="main-box-middle">
+            <div class="search-detail-cols">
+                <div class="col1">
+                    <p><i class="fa fa-2x fa-car" aria-hidden="true"></i></p>
+                    <p><span class="medium-search-detail">Metered</span></p>
+                    <p><span class="large-search-detail">$2.00</span></p>
+                    <p><span class="small-search-detail">PER HOUR</span></p>
+                </div>
+                <div class="col2">
+                    <p><i class="fa fa-2x fa-clock-o" aria-hidden="true"></i></p>
+                    <p><span class="medium-search-detail">Timed</span></p>
+                    <p><span class="large-search-detail">2 hr</span></p>
+                    <p><span class="small-search-detail">TIME LIMIT</span></p>
+                </div>
+            </div>
+            <div class="main-box-middle--note"><p>Administered by the City of Cambridge</p></div>
+        </div>
+        <div id="main-box-bottom">
+            <p>Meter starts automatically on arrival</p>
+        </div>
+    </div>
 {% endblock %}
+
+    <p>Your spot is <span id="avail_status"></span>
