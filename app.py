@@ -8,6 +8,8 @@ This file creates your application.
 
 spot_available = False
 
+total_avail_spots = 5
+
 import os, random
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 
@@ -16,15 +18,20 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'a_very_secret_secret')
 
 @app.route('/')
-def home():
-    """Render website's home page."""
-    return render_template('home.html', availability=spot_available)
+def search():
+    """Render website's search page."""
+    return render_template('search.html', total_avail_spots=total_avail_spots)
 
 
-@app.route('/about/')
-def about():
-    """Render the website's about page."""
-    return render_template('about.html')
+@app.route('/selected/')
+def selected():
+    """Render the website's selected page."""
+    return render_template('selected.html')
+
+@app.route('/parked/')
+def parked():
+    """Render the website's parked page."""
+    return render_template('parked.html')
 
 @app.route('/availability_data', methods=['GET', 'POST'])
 def availability_data():

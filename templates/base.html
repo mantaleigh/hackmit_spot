@@ -5,10 +5,12 @@
 
   <title>{% block title %}yoursite.com{% endblock %}</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="shortcut icon" href="/static/favicon.ico">
+
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.css' rel='stylesheet' />
 
   <!-- HTML5 shim, for IE 6-8 support of HTML elements -->
   <!--[if lt IE 9]>
@@ -18,11 +20,17 @@
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
   <link rel="stylesheet/less" href="/static/css/main.less">
+
+  <link rel="stylesheet" href="static/css/custom.css">
+  
   {% block css %}{% endblock %}
 
   <!-- Rather use `less.js` to dynamically compile your `stylesheet/less` files? -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.4.1/less.min.js"></script>
   <script>window.less || document.write('<script src="/static/js/less.js">\x3C/script>')</script>
+
+  <!-- font awesome -->
+  <script src="https://use.fontawesome.com/1c5aaa639e.js"></script>
 
   <!-- Need Modernizr? Uncomment the following script. -->
   <!-- <script src="/static/js/modernizr.js"></script> -->
@@ -36,6 +44,7 @@
   </header>
 
   <div id="main" role="main">
+    <div id='map'></div>
     {% block main %}{% endblock %}
   </div>
 
@@ -50,6 +59,8 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="/static/js/libs/jquery.js">\x3C/script>')</script>
 
+  <!-- mapbox -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.js'></script>
 
   <!-- Additional JavaScript libraries and plugins... -->
   {% block js %}{% endblock %}
